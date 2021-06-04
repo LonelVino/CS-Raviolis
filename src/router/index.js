@@ -98,6 +98,19 @@ export const constantRoutes = [
     ]
   },
   {
+    path: '/cart-table',
+    component: Layout,
+    children: [
+      {
+        path: '/cart-table',
+        component: () => import('@/views/cart-table/index'),
+        name: 'CartTable',
+        meta: { title: 'CartTable', icon: 'dashboard', affix: true }
+      }
+    ]
+  },
+
+  {
     path: '/user-table',
     component: Layout,
     children: [
@@ -112,30 +125,15 @@ export const constantRoutes = [
   {
     path: '/table',
     component: Layout,
-    redirect: '/table/pitch-table',
+    redirect: '/table/ane-table',
     name: 'Table',
-    meta: {
-      title: 'Table',
-      icon: 'table'
-    }, children: [
-      {
-        path: 'pitch-table',
-        component: () => import('@/views/table/pitchTable'),
-        name: 'PitchTable',
-        meta: { title: 'Pitch' }
-      },
+    children: [
       {
         path: 'ane-table',
         component: () => import('@/views/table/aneTable'),
         name: 'AneTable',
         meta: { title: 'Ane Rouge' }
       },
-      {
-        path: 'vol-table',
-        component: () => import('@/views/table/volTable'),
-        name: 'VolantTable',
-        meta: { title: 'Volant Volant' }
-      }
     ]
   }
 ]

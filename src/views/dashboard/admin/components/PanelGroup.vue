@@ -1,52 +1,140 @@
 <template>
   <el-row :gutter="40" class="panel-group">
-    <el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
-      <div class="card-panel" @click="handleSetLineChartData('newVisitis')">
-        <div class="card-panel-icon-wrapper icon-people">
-          <svg-icon icon-class="peoples" class-name="card-panel-icon" />
-        </div>
+    <el-col :xs="7" :sm="5" :lg="3" class="card-panel-col">
+      <div class="card-panel" @click="handleSetLineChartData('zhurou_jiaozi')">
         <div class="card-panel-description">
           <div class="card-panel-text">
-            New Visits
+            猪肉饺子
           </div>
           <count-to :start-val="0" :end-val="102400" :duration="2600" class="card-panel-num" />
         </div>
       </div>
     </el-col>
-    <el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
-      <div class="card-panel" @click="handleSetLineChartData('messages')">
-        <div class="card-panel-icon-wrapper icon-message">
-          <svg-icon icon-class="message" class-name="card-panel-icon" />
-        </div>
+    <el-col  :xs="7" :sm="5" :lg="3" class="card-panel-col">
+      <div class="card-panel" @click="handleSetLineChartData('niurou_jiaozi')">
         <div class="card-panel-description">
           <div class="card-panel-text">
-            Messages
+            牛肉饺子
           </div>
           <count-to :start-val="0" :end-val="81212" :duration="3000" class="card-panel-num" />
         </div>
       </div>
     </el-col>
-    <el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
-      <div class="card-panel" @click="handleSetLineChartData('purchases')">
-        <div class="card-panel-icon-wrapper icon-money">
-          <svg-icon icon-class="money" class-name="card-panel-icon" />
-        </div>
+    <el-col  :xs="7" :sm="5" :lg="3" class="card-panel-col">
+      <div class="card-panel" @click="handleSetLineChartData('jidan_jiaozi')">
         <div class="card-panel-description">
           <div class="card-panel-text">
-            Purchases
+            鸡蛋饺子
           </div>
           <count-to :start-val="0" :end-val="9280" :duration="3200" class="card-panel-num" />
         </div>
       </div>
     </el-col>
-    <el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
-      <div class="card-panel" @click="handleSetLineChartData('shoppings')">
-        <div class="card-panel-icon-wrapper icon-shopping">
-          <svg-icon icon-class="shopping" class-name="card-panel-icon" />
-        </div>
+    <el-col  :xs="7" :sm="5" :lg="3" class="card-panel-col">
+      <div class="card-panel" @click="handleSetLineChartData('qita_jiaozi')">
         <div class="card-panel-description">
           <div class="card-panel-text">
-            Shoppings
+            其他饺子
+          </div>
+          <count-to :start-val="0" :end-val="13600" :duration="3600" class="card-panel-num" />
+        </div>
+      </div>
+    </el-col>
+    <el-col  :xs="7" :sm="5" :lg="3" class="card-panel-col">
+      <div class="card-panel" @click="handleSetLineChartData('difang_tese_mianshi')">
+        <div class="card-panel-description">
+          <div class="card-panel-text">
+            特色面食
+          </div>
+          <count-to :start-val="0" :end-val="13600" :duration="3600" class="card-panel-num" />
+        </div>
+      </div>
+    </el-col>
+    <el-col  :xs="7" :sm="5" :lg="3" class="card-panel-col">
+      <div class="card-panel" @click="handleSetLineChartData('huntun')">
+        <div class="card-panel-description">
+          <div class="card-panel-text">
+            美味馄饨
+          </div>
+          <count-to :start-val="0" :end-val="13600" :duration="3600" class="card-panel-num" />
+        </div>
+      </div>
+    </el-col>
+    <el-col  :xs="7" :sm="5" :lg="3" class="card-panel-col">
+      <div class="card-panel" @click="handleSetLineChartData('zongzi')">
+        <div class="card-panel-description">
+          <div class="card-panel-text">
+            粽子
+          </div>
+          <count-to :start-val="0" :end-val="13600" :duration="3600" class="card-panel-num" />
+        </div>
+      </div>
+    </el-col>
+    <el-col  :xs="7" :sm="5" :lg="3" class="card-panel-col">
+      <div class="card-panel" @click="handleSetLineChartData('xinpin')">
+        <div class="card-panel-description">
+          <div class="card-panel-text">
+            尝鲜新品
+          </div>
+          <count-to :start-val="0" :end-val="13600" :duration="3600" class="card-panel-num" />
+        </div>
+      </div>
+    </el-col>
+    <el-col  :xs="8" :sm="6" :lg="4" class="card-panel-col">
+      <div class="card-panel" @click="handleSetLineChartData('jiachang_8')">
+        <div class="card-panel-description">
+          <div class="card-panel-text">
+            家常菜8欧系列
+          </div>
+          <count-to :start-val="0" :end-val="13600" :duration="3600" class="card-panel-num" />
+        </div>
+      </div>
+    </el-col>
+    <el-col  :xs="8" :sm="6" :lg="4" class="card-panel-col">
+      <div class="card-panel" @click="handleSetLineChartData('jiachang_6')">
+        <div class="card-panel-description">
+          <div class="card-panel-text">
+            家常菜6欧系列
+          </div>
+          <count-to :start-val="0" :end-val="13600" :duration="3600" class="card-panel-num" />
+        </div>
+      </div>
+    </el-col>
+    <el-col  :xs="8" :sm="6" :lg="4" class="card-panel-col">
+      <div class="card-panel" @click="handleSetLineChartData('jiachang_5')">
+        <div class="card-panel-description">
+          <div class="card-panel-text">
+            家常菜5欧系列
+          </div>
+          <count-to :start-val="0" :end-val="13600" :duration="3600" class="card-panel-num" />
+        </div>
+      </div>
+    </el-col>
+    <el-col  :xs="8" :sm="6" :lg="4" class="card-panel-col">
+      <div class="card-panel" @click="handleSetLineChartData('jiachang_16')">
+        <div class="card-panel-description">
+          <div class="card-panel-text">
+            家常菜16欧系列
+          </div>
+          <count-to :start-val="0" :end-val="13600" :duration="3600" class="card-panel-num" />
+        </div>
+      </div>
+    </el-col>
+    <el-col  :xs="8" :sm="6" :lg="4" class="card-panel-col">
+      <div class="card-panel" @click="handleSetLineChartData('jiachang_12')">
+        <div class="card-panel-description">
+          <div class="card-panel-text">
+            家常菜12欧系列
+          </div>
+          <count-to :start-val="0" :end-val="13600" :duration="3600" class="card-panel-num" />
+        </div>
+      </div>
+    </el-col>
+    <el-col  :xs="8" :sm="6" :lg="4" class="card-panel-col">
+      <div class="card-panel" @click="handleSetLineChartData('jiachang_10')">
+        <div class="card-panel-description">
+          <div class="card-panel-text">
+            家常菜10欧系列
           </div>
           <count-to :start-val="0" :end-val="13600" :duration="3600" class="card-panel-num" />
         </div>
@@ -72,16 +160,16 @@ export default {
 
 <style lang="scss" scoped>
 .panel-group {
-  margin-top: 18px;
+  margin-top: 10px;
 
   .card-panel-col {
-    margin-bottom: 32px;
+    margin-bottom: 20px;
   }
 
   .card-panel {
-    height: 108px;
+    height: 8vw;
     cursor: pointer;
-    font-size: 12px;
+    font-size: 2vw;
     position: relative;
     overflow: hidden;
     color: #666;
@@ -154,9 +242,15 @@ export default {
       }
 
       .card-panel-num {
-        font-size: 20px;
+        font-size: 1.5vw;
       }
     }
+  }
+}
+
+@media (max-width: 900px)  {
+  .card-panel-num {
+    display: none;
   }
 }
 
