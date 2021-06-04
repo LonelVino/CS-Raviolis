@@ -11,6 +11,7 @@ class Order(models.Model):
     # 这个很有帮助，这样一来用Queryset取值的时候是按照先后顺序来的 
     class Meta:
         ordering = ('-created',)
+        db_table = 'Order'
 
     def __str__(self):
         return 'Order {}'.format(self.id)
@@ -34,3 +35,6 @@ class OrderItem(models.Model):
     def get_cost(self):
         return self.price * self.quantity
     get_cost.short_description='cost'
+
+    class Meta:
+        db_table = 'OrderItem'

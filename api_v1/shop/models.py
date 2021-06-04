@@ -14,12 +14,14 @@ class Category(models.Model):
                             db_index=True,
                             unique=True)
     # Django 模型类的Meta是一个内部类，它用于定义一些Django模型类的行为特性
+    
     # ordering排序方式， verbose name可读性高的名字
     class Meta:
         ordering = ('-name',)
         verbose_name = 'category'
         # 默认的是直接加s
         verbose_name_plural = 'categories'
+        db_table = 'Category'
 
     def __str__(self):
         return self.name
@@ -43,6 +45,7 @@ class Product(models.Model):
     class Meta:
         ordering = ('name',)
         index_together = (('id', 'slug'),)
+        db_table = 'Product'
 
     def __str__(self):
         return self.name

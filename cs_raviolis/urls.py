@@ -25,7 +25,10 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     url(r'^$', TemplateView.as_view(template_name='index.html')),
     path('api_v1/', include('api_v1.urls')),
+    path('api_v1/shop/', include('api_v1.shop.urls')),
+    path('api_v1/cart/', include('api_v1.cart.urls')),
+    path('api_v1/order/', include('api_v1.order.urls')),
 
-    path('testdb', include('TestModel.urls')),
+    path('testdb/', include('TestModel.urls'), name='testdb'),
 
 ]
