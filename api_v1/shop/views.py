@@ -9,7 +9,7 @@ from api_v1.shop.models import Category
 def one_product(request):   # Select the product according to the id and slug
     if request.method == 'GET':
         id = request.GET.get('id', default=0)
-        slug = request.GET.get('slug', default=0)
+        slug = request.GET.get('slug', default='')
         if id != 0:
             prod_1= Product.objects.filter(id=id)[0]
         elif slug == '':
@@ -67,15 +67,20 @@ def products(request):
 
 def one_category(request):  # Select the product according to the slug
     if request.method == 'GET':
+        id = request.GET.get('id', default=0)
         slug = request.GET.get('slug', default='')
-        cat_1 = Category.objects.filter(slug=slug)[0]
-        return JsonResponse({
-            'code': 3005,
-            'msg': 'Parameters does not meet the requirements!'
-        })     
+        if id != 0:
+            cat_1 = Category.objects.filter(id=id)[0]
+        elif slug == '':
+            cat_1 = Category.objects.filter(slug=slug)[0]
+        else:
+            return JsonResponse({
+                'code': 3005,
+                'msg': 'Parameters does not meet the requirements!'
+            })     
 
         #TODO: write this as a map function
-        info =  {'id': cat.id, 'name': cat.name, 'slug': prod_1.slug,}
+        info =  {'id': cat_1.id, 'name': cat_1.name, 'slug': cat_1.slug,}
         return JsonResponse({
             'code': 200,
             'msg': 'Get information of category successfully',
