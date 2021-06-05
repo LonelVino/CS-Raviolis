@@ -105,7 +105,7 @@ def categories(request):
                 'msg': 'get all products successfully',
                 'data': {
                     'total': len(categories),
-                    'prod_infos': categories
+                    'cat_infos': categories
                 }
             })
         else:

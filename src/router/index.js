@@ -57,19 +57,6 @@ export const constantRoutes = [
     name: 'Login',
     component: () => import('@/views/login/index'),
   },
-  // {
-  //   path: '/',
-  //   component: Layout,
-  //   redirect: '/login',
-  //   children: [
-  //     {
-  //       path: 'login',
-  //       component: () => import('@/views/login/index'),
-  //       name: 'Dashboard',
-  //       meta: { title: 'Login', icon: 'login', affix: true }
-  //     }
-  //   ]
-  // },
   {
     path: '/',
     component: Layout,
@@ -94,6 +81,18 @@ export const constantRoutes = [
         component: () => import('@/views/profile/index'),
         name: 'Profile',
         meta: { title: 'Profile', icon: 'user', noCache: true }
+      }
+    ]
+  },
+  {
+    path: '/order-table',
+    component: Layout,
+    children: [
+      {
+        path: '/user-order-table',
+        component: () => import('@/views/user-order-table/index'),
+        name: 'UserCartTable',
+        meta: { title: 'UserOrderTable', icon: 'dashboard', affix: true }
       }
     ]
   },

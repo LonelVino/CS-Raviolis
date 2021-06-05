@@ -154,9 +154,9 @@ def del_cart(request):
     except:
         pass
     if id:
-        cart_items = CartItem.objects.filter(cart_id = id)
-        print(cart_items)
-        # Cart.objects.filter(id=id).delete()
+        cart_items = list(CartItem.objects.filter(cart_id = id).values())
+        for item in cart_items:
+            CartItem.objects.filter(id=item['id']).delete()
         return JsonResponse({
             'code': 200,
             'msg': 'Delete successfully!',

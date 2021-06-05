@@ -1,12 +1,14 @@
 from django.db import models
-
 from api_v1.shop.models import Product
+from api_v1.user.models import User
 
 # related_name, items.all()
 class UserOrder(models.Model):
+    user = models.ForeignKey(User, related_name='userOrder', on_delete=models.CASCADE)
     username = models.CharField(max_length=100,default='None')
     paid = models.BooleanField(default=False)
     usr_price = models.FloatField(default=0.)
+    gotten = models.BooleanField(default=False)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     # 这个很有帮助，这样一来用Queryset取值的时候是按照先后顺序来的 
@@ -28,6 +30,7 @@ class OrderItem(models.Model):
     product = models.ForeignKey(Product, related_name='order_items',on_delete=models.CASCADE)
     itm_price = models.FloatField()
     quantity = models.PositiveIntegerField(default=1)
+    gotten = models.BooleanField(default=False)
     # 应该直接加一项total_cost,方便之后直接用数据库统计,
     # 需要改orderItem的创建方式,以及最好order的也改，不过其实问题不大
     def __str__(self):

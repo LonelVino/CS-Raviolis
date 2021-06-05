@@ -42,13 +42,13 @@ export default {
     getList() {
       this.listLoading = true
       getAllCats().then(response => {
-        this.categories = response.data.infos
+        this.categories = response.data.cat_infos
         console.log('All categories: ', this.categories)
       }).catch(err => {
         console.error(err)
       })
       getAllProds().then(response => {
-        this.products = response.data.infos
+        this.products = response.data.prod_infos
         console.log('All products: ', this.products)
       }).catch(err => {
         console.error(err)

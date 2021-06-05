@@ -29,17 +29,20 @@
       <el-table-column label="Actions" align="center" class-name="small-padding fixed-width">
         <template slot-scope="{row}">
           <el-button v-if="row.status!='deleted'" size="mini" type="danger" @click="confirmDelete(row.id)">
-            Delete
+            Remove
           </el-button>
         </template>
       </el-table-column>
     </el-table>
+    <div class="remove-all">
+      <el-button type="danger" @click="confirmDeleteAll()">Remove All</el-button>
+    </div>
   </div>
 </template>
 
 <script>
 import {getProd} from '@/api/shop.js'
-import {getCartByUser, getCartItems, addCart, updateCartItem, deleteCartItem} from '@/api/cart.js'
+import {getCartByUser, getCartItems, addCart, updateCartItem, deleteCart, deleteCartItem} from '@/api/cart.js'
 import Pagination from '@/components/Pagination' // secondary package based on el-pagination
 import waves from '@/directive/waves' // waves directive
 
@@ -87,7 +90,6 @@ export default {
       this.listLoading = true
       var res = await getCartByUser(this.usr_id)
       this.cart = res.data.cart_info
-      console.log('The cart is: ', this.cart)
       //TODO:use aysnc/await to replace the settimeout
       getCartItems(this.cart.id).then(response => {
         this.cart_items = response.data.cart_itms_infos
@@ -174,6 +176,40 @@ export default {
         })
       })
     },
+
+    confirmDeleteAll() {
+      this.$confirm('This operation will delete this information forever, are you sure?', 'Note', {
+          confirmButtonText: 'Confirm',
+          cancelButtonText: 'Cancle',
+          type: 'warning'
+        }).then(() => {
+          this.handleDeleteAll(this.cart.id)
+        }).catch(() => {
+          this.$message({
+            type: 'info',
+            message: 'Delete cancled'
+          });
+        });
+    },
+    handleDeleteAll(index) {
+      console.log('INDEX:', index)
+      deleteCart(index).then(() => {
+        this.$notify({
+          title: 'Success',
+          message: 'Delete All Successfully',
+          type: 'success',
+          duration: 2000
+        })
+        this.getList()
+      }).catch(err => {
+        this.$notify({
+          title: 'Failed',
+          message: 'Delete All failed',
+          type: 'danger',
+          duration: 2000
+        })
+      })
+    },
   }
 }
 </script>
@@ -204,5 +240,11 @@ export default {
   margin: 0.2vw;
   display: flex;
   justify-content: flex-start;
+}
+.remove-all {
+  margin: 20px auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
 }
 </style>
