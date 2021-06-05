@@ -1,13 +1,8 @@
-from django.shortcuts import render
-
 # Create your views here.
-import json
 from django.http import JsonResponse
 from api_v1.order.models import UserOrder
 from api_v1.order.models import OrderItem
 
-
-# Create your views here.
 #TODO: change select according to slug to according to the name
 def one_order(request):   # Select the product according to the id and slug
     if request.method == 'GET':
@@ -83,7 +78,6 @@ def order_items(request):
     all_order_items = list(OrderItem.objects.all())
     order_items = []
     for i in all_order_items:
-        print('OrderItem.attr---------------------------: ', i.__dict__)
         tmp = {}
         tmp['id'] = i.id
         tmp['itm_price'] = i.itm_price

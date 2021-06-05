@@ -6,7 +6,7 @@ from api_v1.shop.models import Product
 class UserOrder(models.Model):
     username = models.CharField(max_length=100,default='None')
     paid = models.BooleanField(default=False)
-    usr_price = models.FloatField(default=0)
+    usr_price = models.FloatField(default=0.)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     # 这个很有帮助，这样一来用Queryset取值的时候是按照先后顺序来的 

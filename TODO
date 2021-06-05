@@ -1,6 +1,9 @@
 - ADD OAUTH
 - If login first, show the user-guide
 
+- ADD ForeignKey in Order, Cart, used to query corresponded cart or order by the user id or smth else
+- Authorization limitation, e.x.:One user can only delete his own cart
+
 - Know How to use slug in Category
 - Know how to use Meta ordering in Class
 - Why not combine Order and OrderItem?

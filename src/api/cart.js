@@ -4,9 +4,9 @@ var BASE_URL = '/api_v1/cart'
 var ADMIN_BASE_URL = '/api_v1/cart/admin'
 
 
-export function getCartByUser(id, name) {
+export function getCartByUser(id) {
   return request({
-    url:  BASE_URL + '/one_cart?user_id='+id,
+    url:  BASE_URL + '/one_cart?usr_id='+id,
     method: 'get',
   })
 }

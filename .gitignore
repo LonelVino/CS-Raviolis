@@ -11,6 +11,9 @@ selenium-debug.log
 migrate.py
 migrate_ex.py
 
+csRaviolis.db-journal
+csRaviolis.db.sqbpro
+
 # Editor directories and files
 .idea
 .vscode
