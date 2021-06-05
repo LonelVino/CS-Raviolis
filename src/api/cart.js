@@ -11,6 +11,14 @@ export function getCartByUser(id) {
   })
 }
 
+
+export function getCartItems(id) {
+  return request({
+    url:  BASE_URL + '/cart_items?cart_id='+id,
+    method: 'get',
+  })
+}
+
 export function addCart(data) {
   return request({
     url: BASE_URL + '/add_cart',
@@ -19,9 +27,9 @@ export function addCart(data) {
   })
 }
 
-export function updateCart(data) {
+export function updateCartItem(data) {
   return request({
-    url: BASE_URL + '/update_cart',
+    url: BASE_URL + '/update_cart_item',
     method: 'put',
     data
   })
@@ -29,7 +37,16 @@ export function updateCart(data) {
 
 export function deleteCart(id) {
   return request({
-    url: BASE_URL + '/del_cart?id='+id,
+    url: BASE_URL + '/delete_cart?id='+id,
+    method: 'delete',
+  })
+}
+
+
+
+export function deleteCartItem(id) {
+  return request({
+    url: BASE_URL + '/delete_crt_item?id='+id,
     method: 'delete',
   })
 }

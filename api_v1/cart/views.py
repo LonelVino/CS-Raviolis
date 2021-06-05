@@ -52,27 +52,27 @@ def carts(request):
         else:
             return JsonResponse({'code': 200, 'msg': 'Empty table!'})
 
-def one_cart_item(request):   # Select the product according to the id and slug
-    if request.method == 'GET':
-        id = request.GET.get('id', default=0)
-        print('id: ================', id)
-        if id != 0:
-            cart_item_1 = CartItem.objects.filter(id=id)[0]
-        else:
-            return JsonResponse({
-                'code': 3005,
-                'msg': 'Parameters does not meet the requirements!'
-            })     
-        #TODO: write this as a map function
-        info =  {'id': cart_item_1.id, 'itm_price': cart_item_1.itm_price, 'quantity': cart_item_1.quantity,
-        'product_id': cart_item_1.product_id, 'card_id': cart_item_1.order_id}
-        return JsonResponse({
-            'code': 200,
-            'msg': 'Get information of cart item successfully',
-            'data': {
-                'cart_itm_info': info
-            }
-        })
+# def one_cart_item(request):   # Select the product according to the id and slug
+#     if request.method == 'GET':
+#         id = request.GET.get('id', default=0)
+#         print('id: ================', id)
+#         if id != 0:
+#             cart_item_1 = CartItem.objects.filter(id=id)[0]
+#         else:
+#             return JsonResponse({
+#                 'code': 3005,
+#                 'msg': 'Parameters does not meet the requirements!'
+#             })     
+#         #TODO: write this as a map function
+#         info =  {'id': cart_item_1.id, 'itm_price': cart_item_1.itm_price, 'quantity': cart_item_1.quantity,
+#         'product_id': cart_item_1.product_id, 'card_id': cart_item_1.order_id}
+#         return JsonResponse({
+#             'code': 200,
+#             'msg': 'Get information of cart item successfully',
+#             'data': {
+#                 'cart_itm_info': info
+#             }
+#         })
 
 
 def cart_items(request):
@@ -84,7 +84,7 @@ def cart_items(request):
         tmp['id'] = i.id
         tmp['itm_price'] = i.itm_price
         tmp['quantity'] = i.quantity
-        tmp['order_id'] = i.order_id
+        tmp['cart_id'] = i.cart_id
         tmp['product_id'] = i.product_id
         cart_items.append(tmp)
     if len(all_cart_items) >= 0:
@@ -130,15 +130,13 @@ def add_cart_item(request):
         })  
 
 
-def update_cart(request):
-    pass
-
 def update_cart_item(request):
     if request.method == 'PUT':
         received_json_data = json.loads(request.body)
         rec = received_json_data
         cart_item_1 = CartItem.objects.get(id = rec['id'])
         cart_item_1.quantity = rec['quantity']
+        cart_item_1.save()
         return JsonResponse({
             'code': 200,
             'msg': 'Update Successfully!',

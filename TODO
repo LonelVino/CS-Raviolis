@@ -1,6 +1,7 @@
 - ADD OAUTH
 - If login first, show the user-guide
 
+- Learn how to use the Async, store.dispatch from 'Login.vue' in 'club-chinois-admin'
 - ADD ForeignKey in Order, Cart, used to query corresponded cart or order by the user id or smth else
 - Authorization limitation, e.x.:One user can only delete his own cart
 
