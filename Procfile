@@ -1,2 +1,2 @@
 
-web: gunicorn django_vue_template.wsgi --log-file -
+web:gunicorn cs_raviolis.wsgi --log-file -
