@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'whitenoise.runserver_nostatic',
     'oauth2_provider',
+    'sslserver',
     'corsheaders',
     'TestModel',
     'api_v1'
