@@ -11,7 +11,10 @@ urlpatterns = [
     url('add_tag', views.add_tag, name='addTag'),  
     url('add_order', views.add_order, name='addOrder'),  
 
-    url('update_order', views.update_tag, name='updateTag'),
+    url('check_one_ord', views.check_one_order, name="checkOneOrder"),
+    url('add_ord_quan', views.add_order_quantity, name="addOrderQuantity"),
+
+    url('update_tag', views.update_tag, name='updateTag'),
     url('update_order', views.update_order, name='updateOrder'),
     url('delete_one_tag', views.delete_one_tag, name='deleteOneTag'),
     url('delete_one_ord', views.delete_one_order, name='deleteOneOrder'),

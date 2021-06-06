@@ -66,22 +66,57 @@ def one_order(request):
 
 def all_orders(request):
     if request.method == 'GET':
-        all_check_orders = list(checkOrder.objects.all().values())
-        # all_infos = []
-        # for user in all_check_orders:
-        #     tmp_user = {}
-        #     tmp_user['id'] = user.id; tmp_user['product_id'] = user.product_id;
-        #     tmp_user['itm_price'] = user.itm_price; tmp_user['gotten'] = user.gotten;
-        #     tmp_user['quantity'] = user.quantity; tmp_user['tag_id'] = user.tag_id;
-        #     tmp_user['product_name'] = user.product_name; tmp_user['category_name'] = user.category_name 
-        #     all_infos.append(tmp_user)
+        tag_id = request.GET.get('tag_id',default=0)
+        if tag_id != 0:
+            all_check_orders = list(checkOrder.objects.filter(tag_id=tag_id).values())
+            return JsonResponse({
+                'code': 200,
+                'msg': 'get all information successfully',
+                'data': {
+                    'total': len(all_check_orders),
+                    'infos': all_check_orders
+                }
+            })
+        else:
+            return JsonResponse({
+                'code': 3005,
+                'msg': 'Parameters does not meet the requirements!'
+            })     
+
+def check_one_order(request):
+    if request.method == 'PUT':
+        received_json_data = json.loads(request.body)
+        rec = received_json_data
+        # print('REC=================:', rec['id'], rec['gotten'])
+        check_order_1 = checkOrder.objects.get(id = rec['id'])
+        check_order_1.gotten = rec['gotten']
+        check_order_1.save()
         return JsonResponse({
             'code': 200,
-            'msg': 'get all information successfully',
-            'data': {
-                'total': len(all_check_orders),
-                'infos': all_check_orders
-            }
+            'msg': 'Update Successfully!',
+        })
+    else: 
+        return JsonResponse({
+            'code': 500,
+            'msg': 'Update Failed, incorrect request method!'
+        })
+
+def add_order_quantity(request):
+    if request.method == 'PUT':
+        received_json_data = json.loads(request.body)
+        rec = received_json_data
+        # print('REC=================:', rec['id'], rec['gotten'])
+        check_order_1 = checkOrder.objects.get(id = rec['id'])
+        check_order_1.quantity = rec['quantity']
+        check_order_1.save()
+        return JsonResponse({
+            'code': 200,
+            'msg': 'Update Successfully!',
+        })
+    else: 
+        return JsonResponse({
+            'code': 500,
+            'msg': 'Update Failed, incorrect request method!'
         })
 
 def add_tag(request):
