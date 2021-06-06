@@ -10,7 +10,12 @@
   .sidebar-container {
     transition: width 0.28s;
     width: $sideBarWidth !important;
-    background-color: $menuBg;
+    // background-color: $menuBg;
+    // background: linear-gradient(to right, #403a3e, #be5869) !important; /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: #485563;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #29323c, #485563);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #29323c, #485563); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
     height: 100%;
     position: fixed;
     font-size: 0px;
@@ -19,7 +24,7 @@
     left: 0;
     z-index: 1001;
     overflow: hidden;
-
+  }
     // reset element-ui css
     .horizontal-collapse-transition {
       transition: 0s width ease-in-out, 0s padding-left ease-in-out, 0s padding-right ease-in-out;
@@ -27,7 +32,7 @@
 
     .scrollbar-wrapper {
       overflow-x: hidden !important;
-    }
+      
 
     .el-scrollbar__bar.is-vertical {
       right: 0px;
@@ -66,11 +71,28 @@
       border: none;
       height: 100%;
       width: 100% !important;
+      .el-menu-item{
+        font-weight: bolder;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        background: #485563;  /* fallback for old browsers */
+        background: -webkit-linear-gradient(to right, #29323c, #485563);  /* Chrome 10-25, Safari 5.1-6 */
+        background: linear-gradient(to right, #29323c, #485563); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+
+        &:hover {
+          background-color: $menuHover !important;
+        }
+      } 
     }
 
     // menu hover
     .submenu-title-noDropdown,
     .el-submenu__title {
+      font-weight: bolder;
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+      background: #485563;  /* fallback for old browsers */
+      background: -webkit-linear-gradient(to right, #29323c, #485563);  /* Chrome 10-25, Safari 5.1-6 */
+      background: linear-gradient(to right, #29323c, #485563); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
       &:hover {
         background-color: $menuHover !important;
       }
@@ -78,6 +100,7 @@
 
     .is-active>.el-submenu__title {
       color: $subMenuActiveText !important;
+      
     }
 
     & .nest-menu .el-submenu>.el-submenu__title,

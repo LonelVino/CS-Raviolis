@@ -131,6 +131,21 @@ aside {
   }
 }
 
+.app-main{
+  background: #833ab4;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #fcb045, #fd1d1d, #833ab4);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #fcb045, #fd1d1d, #833ab4); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+.dashboard-container {
+  background-image: url("https://cdn-0.idownloadblog.com/wp-content/uploads/2019/06/macOS-Catalina-wallpaper-idownloadblog.jpg");
+  /* Full height */
+  height: 100%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 //main-container全局样式
 .app-container {
   padding: 20px;

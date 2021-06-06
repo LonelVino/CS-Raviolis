@@ -1,8 +1,8 @@
 import request from '@/utils/request'
 
-var CAS_BASE_URL = '/django_api/cas'
+var CAS_BASE_URL = '/api_v1/cas'
 
-var BASE_URL = '/django_api/user'
+var BASE_URL = '/api_v1/user'
 
 export function register(data) {
   return request({
@@ -44,14 +44,6 @@ export function getName(id) {
 export function getInfo(id, name) {
   return request({
     url:  BASE_URL + '/one_info?id='+id +'&name=' + name,
-    method: 'get',
-  })
-}
-
-
-export function getAllNames() {
-  return request({
-    url: BASE_URL + '/all_names',
     method: 'get',
   })
 }

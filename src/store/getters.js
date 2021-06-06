@@ -6,14 +6,15 @@ const getters = {
   visitedViews: state => state.tagsView.visitedViews,
   cachedViews: state => state.tagsView.cachedViews,
 
-  cas_id: state => state.user.cas_id,
+  cas_id: state => state.user.csas_id,
   name: state => state.user.name,
   role: state => state.user.role,
-  score: state => state.user.score,
-  isAne: state => state.user.isAne,
-  isVol: state => state.user.isVol,
-  isPitch: state => state.user.isPitch,
   
+  products: state => state.product.products,
+  productByCat: state => state.product.productByCat,
+  categories: state => state.product.categories,
+  prods_loading: state => state.product.prods_loading,
+
   permission_routes: state => state.permission.routes,
   errorLogs: state => state.errorLog.logs
 }

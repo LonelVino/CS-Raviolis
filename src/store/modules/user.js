@@ -1,14 +1,10 @@
-import { register, login, logout, getRole, getName, getInfo, getAllNames, getAllInfos } from '@/api/user'
+import { register, login, logout, getRole, getName, getInfo, getAllInfos } from '@/api/user'
 import router, { resetRouter } from '@/router'
 
 const state = {
   cas_id: 0,
   name: '',
   role: 'admin',
-  score: '',
-  isAne: 0,
-  isVol: 0,
-  isPitch: 0,
 }
 
 const mutations = {
@@ -21,18 +17,6 @@ const mutations = {
   SET_ROLE: (state, role) => {
     state.role = role
   },
-  SET_SCORE: (state, score) => {
-    state.score = score
-  },
-  SET_IS_ANE: (state, isAne) => {
-    state.isAne = isAne
-  },
-  SET_IS_VOL: (state, isVol) => {
-    state.isVol = isVol
-  },
-  SET_IS_PITCH: (state, isPitch) => {
-    state.isPitch = isPitch
-  },  
 }
 
 const actions = {

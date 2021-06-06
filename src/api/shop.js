@@ -32,6 +32,13 @@ export function getAllProds() {
   })
 }
 
+export function getAllProdsByCat(cat_id) {
+  return request({
+    url: BASE_URL + '/prods_byCat?id=' + cat_id,
+    method: 'get',
+  })
+}
+
 
 // --------------- AMDIN PART -----------------------
 

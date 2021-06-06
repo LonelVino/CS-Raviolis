@@ -1,24 +1,25 @@
 <template>
   <div class="dashboard-editor-container">
-    <panel-group @handleSetProducts="handleSetProducts" />
-
-    <el-row style="background:#fff;padding:16px 16px 0;margin-bottom:32px;">
-    </el-row>
-
-    <el-row :gutter="8">
-      <el-col :xs="{span: 24}" :sm="{span: 12}" :md="{span: 12}" :lg="{span: 6}" :xl="{span: 6}" style="margin-bottom:30px;">
-        <box-card />
-      </el-col>
-      <el-col :xs="{span: 24}" :sm="{span: 12}" :md="{span: 12}" :lg="{span: 6}" :xl="{span: 6}" style="margin-bottom:30px;">
-        <box-card />
-      </el-col>
-    </el-row>
+    <PanelGroup/>
+    <el-main>
+      <sequential-entrance>
+        <el-row :gutter="8" v-loading="prods_loading">
+          <el-col :xs="{span: 24}" :sm="{span: 12}" :md="{span: 12}" :lg="{span: 6}" :xl="{span: 6}" style="margin-bottom:30px;" v-for="prod in productByCat">
+            <template>
+              <box-card :item=prod ></box-card>
+            </template>
+          </el-col>
+        </el-row>
+        </sequential-entrance>
+    </el-main>
+    
   </div>
 </template>
 
 <script>
-import {getCat, getAllCats, getProd, getAllProds} from '@/api/shop.js'
-import PanelGroup from './components/PanelGroup'
+import { mapGetters } from 'vuex'
+import {getAllCats, getAllProds, getAllProdsByCat} from '@/api/shop.js'
+import PanelGroup from './components/SideBar/PanelGroup'
 import BoxCard from './components/BoxCard'
 
 
@@ -26,30 +27,43 @@ export default {
   name: 'DashboardAdmin',
   components: {
     PanelGroup,
-    BoxCard
+    BoxCard,
   },
   data() {
     return {
       type: '',
-      categories: [],
-      products: []
     }
+  },
+  computed: {
+    ...mapGetters([
+      'products',
+      'productByCat',
+      'categories',
+      'prods_loading'
+    ]),
   },
   created() {
     this.getList()
+    console.log(this.prods_loading)
   },
   methods: {
     getList() {
       this.listLoading = true
       getAllCats().then(response => {
-        this.categories = response.data.cat_infos
-        console.log('All categories: ', this.categories)
+        const cats = response.data.cat_infos
+        this.$store.dispatch('product/setCategories', cats)
       }).catch(err => {
         console.error(err)
       })
       getAllProds().then(response => {
-        this.products = response.data.prod_infos
-        console.log('All products: ', this.products)
+        const prods = response.data.prod_infos
+        this.$store.dispatch('product/setProducts', prods)
+      }).catch(err => {
+        console.error(err)
+      })
+      getAllProdsByCat(1).then(response => {
+        const prodsByCat = response.data.prod_infos
+        this.$store.dispatch('product/setProductsByCat', prodsByCat)
       }).catch(err => {
         console.error(err)
       })
@@ -67,8 +81,9 @@ export default {
 <style lang="scss" scoped>
 .dashboard-editor-container {
   padding: 32px;
-  background-color: rgb(240, 242, 245);
   position: relative;
+  display: flex;
+  flex-direction: row;
 
   .github-corner {
     position: absolute;

@@ -3,28 +3,35 @@
     <div slot="header" class="box-card-header">
       <img src="https://wpimg.wallstcn.com/e7d23d71-cf19-4b90-a1cc-f56af8c0903d.png">
     </div>
-    <div style="position:relative;">
-      <div class="progress-item">
-        <span>Prod_name</span>
+    <div class="desc">
+      <div class="progress-title">
+        <span>{{item.name}}</span>
       </div>
       <div class="progress-item">
-        <span>Price: Prod_price</span>
+        <span>Price:{{item.price}}</span>
       </div>
       <div class="progress-item">
-        <span>Minimum: mini_num</span>
+        <span>Minimum: {{item.quantity_unit}}</span>
+      </div>
+      <div class="progress-item">
+        <span>Discount: {{item.dt_info}}</span>
       </div>
     </div>
+    
   </el-card>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
-import PanThumb from '@/components/PanThumb'
-import Mallki from '@/components/TextHoverEffect/Mallki'
 
 export default {
-  components: { PanThumb, Mallki },
-
+  components: { },
+  props: {
+    item: {
+      type: Object,
+      required: true
+    }
+  },
   filters: {
     statusFilter(status) {
       const statusMap = {
@@ -47,6 +54,9 @@ export default {
       'name',
       'roles'
     ])
+  },
+  created() {
+    console.log(this.item)
   }
 }
 </script>
@@ -73,9 +83,23 @@ export default {
       }
     }
   }
+  .desc {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items:flex-start;
+  }
+  .progress-title {
+    margin-bottom: 5px;
+    font-size: 16px;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: bolder;
+  }
   .progress-item {
-    margin-bottom: 10px;
-    font-size: 14px;
+    margin-bottom: 5px;
+    font-size: 13px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-weight: bold;
   }
   @media only screen and (max-width: 100px){
     

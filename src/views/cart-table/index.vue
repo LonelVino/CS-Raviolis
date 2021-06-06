@@ -1,39 +1,49 @@
 <template>
   <div class="app-container">
-    <el-table
-      ref="multipleTable"
-      :key="tableKey"
-      v-loading="listLoading"
-      :data="cart_items"
-      border
-      fit
-      highlight-current-row
-      style="width: 100%;"
-      @sort-change="sortChange"
-    >
-      <el-table-column prop="id" label="ID" width="50px" align="center" show-overflow-tooltip></el-table-column>
-      <el-table-column label="Product" width="200px" align="center" show-overflow-tooltip>
-        <template slot-scope="scope">
-          <div> {{ scope.row.prod_name }}</div>
-        </template>
-      </el-table-column>
-      <el-table-column prop="mini_num" label="Num(/1 Unit)" align="center" show-overflow-tooltip></el-table-column>
-      <el-table-column prop="itm_price" label="Unit Price" align="center" show-overflow-tooltip></el-table-column>
-      <el-table-column prop="ttl_price" label="Total Price" sortable="custom" align="center" show-overflow-tooltip></el-table-column>
-      <el-table-column prop="dt_info" label="Discount" align="center" show-overflow-tooltip></el-table-column>
-      <el-table-column label="Quantity" width="250px" align="center" show-overflow-tooltip>
-        <template slot-scope="scope">
-          <el-input-number class='number-count' v-model="scope.row.quantity" @change="handleChangeQuantity(scope.row.id, scope.row.quantity)" :min="1" :step="1" ></el-input-number>
-        </template>
-      </el-table-column>
-      <el-table-column label="Actions" align="center" class-name="small-padding fixed-width">
-        <template slot-scope="{row}">
-          <el-button v-if="row.status!='deleted'" size="mini" type="danger" @click="confirmDelete(row.id)">
-            Remove
-          </el-button>
-        </template>
-      </el-table-column>
-    </el-table>
+    <div class="cart-table">
+       <el-table
+        ref="multipleTable"
+        :key="tableKey"
+        v-loading="listLoading"
+        :data="cart_items"
+        border
+        fit
+        highlight-current-row
+        class="table"
+        @sort-change="sortChange"
+      >
+        <el-table-column prop="id" label="ID" width="50px" align="center" show-overflow-tooltip></el-table-column>
+        <el-table-column label="Product" width="200px" align="center" show-overflow-tooltip>
+          <template slot-scope="scope">
+            <div> {{ scope.row.prod_name }}</div>
+          </template>
+        </el-table-column>
+        <el-table-column prop="mini_num" label="Num(1 Unit)" align="center" show-overflow-tooltip></el-table-column>
+        <el-table-column label="Unit" align="center" show-overflow-tooltip>
+          <template slot-scope="scope">
+            <div> {{ scope.row.itm_price }} €</div>
+          </template>
+        </el-table-column>
+        <el-table-column label="Total" align="center" show-overflow-tooltip>
+          <template slot-scope="scope">
+            <div> {{ scope.row.ttl_price }} €</div>
+          </template>
+        </el-table-column>
+        <el-table-column prop="dt_info" label="Discount" align="center" show-overflow-tooltip></el-table-column>
+        <el-table-column label="Quantity" width="250px" align="center" show-overflow-tooltip>
+          <template slot-scope="scope">
+            <el-input-number class='number-count' v-model="scope.row.quantity" @change="handleChangeQuantity(scope.row.id, scope.row.quantity)" :min="1" :step="1" ></el-input-number>
+          </template>
+        </el-table-column>
+        <el-table-column label="Actions" align="center" class-name="small-padding fixed-width">
+          <template slot-scope="{row}">
+            <el-button v-if="row.status!='deleted'" size="mini" type="danger" @click="confirmDelete(row.id)">
+              Remove
+            </el-button>
+          </template>
+        </el-table-column>
+      </el-table>
+    </div>
     <div class="remove-all">
       <el-button type="danger" @click="confirmDeleteAll()">Remove All</el-button>
     </div>
@@ -226,20 +236,15 @@ export default {
 }
 </style>
 
-<style scoped>
-.note {
+<style lang="scss" scoped>
+.cart-table {
+  background: linear-gradient(#a04949, #4b57dd);
+  padding: 0.5vw 0.5vw;
+  margin-bottom: 1vw;
+  border-radius: 2%;
   display: flex;
-  flex-direction: column;
-  justify-content: start;
-}
-.note-txt {
-  font-weight: bold;
-  color:rgb(226, 134, 13);
+  align-items: center;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  font-size: 14px;
-  margin: 0.2vw;
-  display: flex;
-  justify-content: flex-start;
 }
 .remove-all {
   margin: 20px auto;

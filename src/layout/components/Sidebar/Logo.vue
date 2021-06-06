@@ -24,7 +24,7 @@ export default {
   },
   data() {
     return {
-      title: 'Club Chinois Admin',
+      title: 'Club Chinois Raviolis',
       logo: 'https://cdn.viarezo.fr/static/image/2f8ac78626209e1477da9b7d94dc0455f621669d6d7f6cef84624bad8b801954.jpg'
     }
   }

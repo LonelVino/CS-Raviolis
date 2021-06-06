@@ -20,11 +20,6 @@
       </el-checkbox>
     </div>
 
-    <div class="note">
-      <p class="note-txt">When modifying the value of 'isAne', 'isVol', 'isPitch', 0 infers to 'No', 1 infers to 'Yes'!</p>
-      <p class="note-txt">You can only modify one row at a time, not multiple rows of data.</p>
-    </div>
-
     <el-table
       ref="multipleTable"
       :key="tableKey"
@@ -46,60 +41,6 @@
           <div v-if="!scope.row.isEdit" @click="handleClick(scope.row)"> {{ scope.row.name }}</div>
           <div v-else>
             <el-input v-model="scope.row.name" @click="handleClick(scope.row)"></el-input>
-          </div>
-        </template>
-      </el-table-column>
-      <el-table-column label="isAne" width="100px" align="center">
-        <template slot-scope="scope">
-          <span>{{scope.row.isAne?'Yes':'No'}}</span>
-          <!-- <div v-if="!scope.row.isEdit" @click="handleClick(scope.row)"> {{ scope.row.isAne?'Yes':'No' }}</div>
-          <div v-else>
-            <el-input v-model="scope.row.isAne" type='number' @click="handleClick(scope.row)"></el-input>
-          </div> -->
-        </template>
-      </el-table-column>
-      <el-table-column label="isVol" width="100px" align="center">
-        <template slot-scope="scope">
-          <span>{{scope.row.isVol?'Yes':'No'}}</span> 
-          <!-- <div v-if="!scope.row.isEdit" @click="handleClick(scope.row)"> {{ scope.row.isVol?'Yes':'No' }}</div>
-          <div v-else>
-            <el-input v-model="scope.row.isVol" type='number' @click="handleClick(scope.row)"></el-input>
-          </div> -->
-        </template>
-      </el-table-column>
-      <el-table-column label="isPitch" class-name="status-col" width="100px">
-        <template slot-scope="scope">
-          <span>{{scope.row.isPitch?'Yes':'No'}}</span>
-          <!-- <div v-if="!scope.row.isEdit" @click="handleClick(scope.row)"> {{ scope.row.isPitch?'Yes':'No' }}</div>
-          <div v-else>
-            <el-input v-model="scope.row.isPitch" type='number' @click="handleClick(scope.row)"></el-input>
-          </div> -->
-        </template>
-      </el-table-column>
-
-      <el-table-column label="Score" width="80px" sortable="custom"  align="center">
-        <template slot-scope="scope">
-          <div v-if="!scope.row.isEdit" @click="handleClick(scope.row)"> {{ scope.row.score}}</div>
-          <div v-else>
-            <el-input v-model="scope.row.score" type='number' @click="handleClick(scope.row)"></el-input>
-          </div>
-        </template>
-      </el-table-column>
-
-      <el-table-column label="Country" width="100px" sortable="custom" align="center">
-        <template slot-scope="scope">
-          <div v-if="!scope.row.isEdit" @click="handleClick(scope.row)"> {{ scope.row.pays}}</div>
-          <div v-else>
-            <el-input v-model="scope.row.pays" @click="handleClick(scope.row)"></el-input>
-          </div>
-        </template>
-      </el-table-column>
-
-      <el-table-column label="Email" class-name="status-col" width="200">
-        <template slot-scope="scope">
-          <div v-if="!scope.row.isEdit" @click="handleClick(scope.row)"> {{ scope.row.email}}</div>
-          <div v-else>
-            <el-input v-model="scope.row.email" @click="handleClick(scope.row)"></el-input>
           </div>
         </template>
       </el-table-column>
@@ -128,27 +69,6 @@
       <el-form ref="dataForm" :rules="rules" :model="temp" label-position="left" label-width="70px" style="width: 400px; margin-left:50px;">
         <el-form-item label="Name" prop="name">
           <el-input v-model="temp.name" />
-        </el-form-item>
-        <el-form-item label="Has played AneRouge?" prop="isAne" label-width="230px">
-          <el-radio v-model="temp.isAne" label="1" disabled>Yes</el-radio>
-          <el-radio v-model="temp.isAne" label="0" disabled>No</el-radio>
-        </el-form-item>
-        <el-form-item label="Has played Volant?" prop="isVol" label-width="230px">
-          <el-radio v-model="temp.isVol" label="1" disabled>Yes</el-radio>
-          <el-radio v-model="temp.isVol" label="0" disabled>No</el-radio>
-        </el-form-item>
-        <el-form-item label="Has played Pitch?" prop="isPitch" label-width="230px">
-          <el-radio v-model="temp.isPitch" label="1" disabled>Yes</el-radio>
-          <el-radio v-model="temp.isPitch" label="0" disabled>No</el-radio>
-        </el-form-item>
-        <el-form-item label="Score" prop="score" label-width="130px">
-          <el-input v-model="temp.score" />
-        </el-form-item>
-        <el-form-item label="Country" prop="pays" label-width="130px">
-          <el-input v-model="temp.pays" />
-        </el-form-item>
-        <el-form-item label="Email" prop="email" label-width="100px">
-          <el-input v-model="temp.email" />
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
@@ -203,16 +123,7 @@ export default {
       temp: {
         id: undefined,
         name: 'None',
-        isAne: 0,
-        isVol: 0,
-        isPitch: 0,
-        score: 0,
-        email: '',
-        telephone: 'None',
-        loc: 'None',
-        pays: 'None'
       },
-
 
       // Edit dialog configuration
       dialogFormVisible: false,
@@ -224,9 +135,6 @@ export default {
 
       rules: {
         name: [{ required: true, message: 'name is required', trigger: 'blur' }],
-        isAne: [{ required: true, message: 'If has played AneRouge is required', trigger: 'change' }],
-        isVol: [{ required: true, message: 'If has played Volant is required', trigger: 'change' }],
-        isPitch: [{ required: true, message: 'If has played Pitch is required', trigger: 'change' }],
       },
       downloadLoading: false,
       confirmLoading: false,
@@ -268,11 +176,6 @@ export default {
         // Just to simulate the time of the request
         console.log('response.data.infos:',response.data.infos)
         this.list = response.data.infos
-        for (var i = 0; i < this.list.length; i++) {
-          this.list[i].isAne = (this.list[i].isAne==true  || this.list[i].isAne == 1) ? 1 : 0  
-          this.list[i].isVol = (this.list[i].isVol==true  || this.list[i].isVol == 1) ? 1 : 0  
-          this.list[i].isPitch = (this.list[i].isPitch==true  || this.list[i].isPitch == 1) ? 1 : 0  
-        }
         this.tmp_list =  response.data.infos
         setTimeout(() => {
           this.listLoading = false
@@ -323,14 +226,6 @@ export default {
       this.temp = {
         id: undefined,
         name: '',
-        isAne: 0,
-        isVol: 0,
-        isPitch: 0,
-        score: 0,
-        email: '',
-        telephone: 'None',
-        loc: 'None',
-        pays: ''
       }
     },
 
@@ -376,28 +271,18 @@ export default {
       this.$refs['dataForm'].validate((valid) => {
         if (valid) {
           const tempData = Object.assign({}, this.temp)
-          tempData.isAne = parseInt(tempData.isAne)
-          tempData.isVol = parseInt(tempData.isVol)
-          tempData.isPitch = parseInt(tempData.isPitch)
-          tempData.score = parseInt(tempData.score)
           console.log(tempData)
           updateInfo(tempData).then(() => {
             this.confirmLoading = true
             this.dialogFormVisible = false
             this.confirmLoading = false
             this.$notify({
-              title: 'Success',
-              message: 'Update Successfully',
-              type: 'success',
-              duration: 2000
+              title: 'Success', message: 'Update Successfully', type: 'success',  duration: 2000
             })
           }).catch(err => {
             console.error(err)
             this.$notify({
-              title: 'Failed to update',
-              message: 'Update Failed' + err,
-              type: 'warning',
-              duration: 2000
+              title: 'Failed to update',  message: 'Update Failed' + err, type: 'warning', duration: 2000
             })
           })
         }
@@ -405,36 +290,24 @@ export default {
     },
     inlineUpdateData(row) {
       const tempData = Object.assign({}, row)
-      tempData.isAne = parseInt(tempData.isAne)
-      tempData.isVol = parseInt(tempData.isVol)
-      tempData.isPitch = parseInt(tempData.isPitch)
-      tempData.score = parseInt(tempData.score)
       console.log('TEMPDATA:', tempData)
       updateInfo(tempData).then(() => {
         this.confirmLoading = true
         this.dialogFormVisible = false
         this.confirmLoading = false
         this.$notify({
-          title: 'Success',
-          message: 'Update Successfully',
-          type: 'success',
-          duration: 2000
+          title: 'Success', message: 'Update Successfully', type: 'success', duration: 2000
         })
       }).catch(err => {
         console.error(err)
         this.$notify({
-          title: 'Failed to update',
-          message: 'Update Failed' + err,
-          type: 'warning',
-          duration: 2000
+          title: 'Failed to update', message: 'Update Failed' + err, type: 'warning', duration: 2000
         })
       })
     },
     confirmDelete(index) {
       this.$confirm('This operation will delete this information forever, are you sure?', 'Note', {
-          confirmButtonText: 'Confirm',
-          cancelButtonText: 'Cancle',
-          type: 'warning'
+          confirmButtonText: 'Confirm', cancelButtonText: 'Cancle', type: 'warning'
         }).then(() => {
           this.handleDelete(index)
         }).catch(() => {
@@ -448,26 +321,20 @@ export default {
       console.log('INDEX:', index)
       deleteInfo(index).then(() => {
         this.$notify({
-          title: 'Success',
-          message: 'Delete Successfully',
-          type: 'success',
-          duration: 2000
+          title: 'Success', message: 'Delete Successfully', type: 'success', duration: 2000
         })
         this.getList()
       }).catch(err => {
         this.$notify({
-          title: 'Failed',
-          message: 'Delete failed',
-          type: 'danger',
-          duration: 2000
+          title: 'Failed', message: 'Delete failed', type: 'danger', duration: 2000
         })
       })
     },
     handleDownload() {
       this.downloadLoading = true
       import('@/vendor/Export2Excel').then(excel => {
-        const tHeader = ['ID', 'name', 'has Ane', 'has Pitch', 'has Volant', 'Score', 'Email', 'Tel', 'Country']
-        const filterVal = ['id', 'name', 'isAne', 'isPitch', 'isVol', 'score', 'email', 'telephone', 'pays']
+        const tHeader = ['ID', 'name']
+        const filterVal = ['id', 'name']
         const data = this.formatJson(filterVal)
         excel.export_json_to_excel({
           header: tHeader,

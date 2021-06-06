@@ -35,25 +35,24 @@ def one_product(request):   # Select the product according to the id and slug
 
 def products(request):
     if request.method == 'GET':
-        all_products = list(Product.objects.all())
-        products = []
-        for i in all_products:
-            tmp = {}
-            tmp['id'] = i.id
-            tmp['name'] = i.name
-            tmp['slug'] = i.slug
-            tmp['category_id'] = i.category_id
-            tmp['quantity_unit'] = i.quantity_unit
-            tmp['description'] = i.description
-            tmp['price'] = i.price
-            tmp['dt_info'] = i.dt_info
-            tmp['created'] = i.created
-            tmp['updated'] = i.updated
-            newImage = json.dumps(str(i.image)) 
-            tmp['image'] = newImage
-
-            products.append(tmp)
+        all_products = list(Product.objects.all().values())
         if len(all_products) >= 0:
+            return JsonResponse({
+                'code': 200,
+                'msg': 'get all products successfully',
+                'data': {
+                    'total': len(all_products),
+                    'prod_infos': all_products
+                }
+            })
+        else:
+            return JsonResponse({'code': 200, 'msg': 'Empty table!'})
+
+def getProductsByCat(request):
+    if request.method == 'GET':
+        cat_id = request.GET.get('id', default=0)
+        products = list(Product.objects.filter(category_id = cat_id).values())
+        if len(products) >= 0:
             return JsonResponse({
                 'code': 200,
                 'msg': 'get all products successfully',
@@ -91,21 +90,14 @@ def one_category(request):  # Select the product according to the slug
 
 def categories(request):
     if request.method == 'GET':
-        all_categories = list(Category.objects.all())
-        categories = []
-        for i in all_categories:
-            tmp = {}
-            tmp['id'] = i.id
-            tmp['name'] = i.name
-            tmp['slug'] = i.slug
-            categories.append(tmp)
+        all_categories = list(Category.objects.all().values())
         if len(all_categories) >= 0:
             return JsonResponse({
                 'code': 200,
                 'msg': 'get all products successfully',
                 'data': {
-                    'total': len(categories),
-                    'cat_infos': categories
+                    'total': len(all_categories),
+                    'cat_infos': all_categories
                 }
             })
         else:

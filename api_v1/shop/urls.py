@@ -8,6 +8,7 @@ urlpatterns = [
     url('all_categories', views.categories, name='allCatagories'),     
     url('product', views.one_product, name='product_detail'), # product?id&slug  
     url('all_prods', views.products, name='allProducts'), 
+    url('prods_byCat', views.getProductsByCat, name='allProductsByCat'), 
     # url(r'^$',views.viarezo_check,name='viarezo_check'),
     # url('secret', views.secret_page, name='secret'),
     ]

@@ -10,6 +10,9 @@
 - ADD ForeignKey in Order, Cart, used to query corresponded cart or order by the user id or smth else
 - Authorization limitation, e.x.:One user can only delete his own cart
 
+- ADD category
+- Update / ADD product
+
 - Sort function in the table
 - Change Ane-Rouge Table into Admin Table (manage All Carts, All Orders, All products, All Catgories.......)
 
