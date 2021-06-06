@@ -66,13 +66,13 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'cs_raviolis.urls'
 
-#  we only want to allow cross-origin resource from http://localhost:8080 locally
-CORS_ORIGIN_ALLOW_ALL = False 
+#  we only want to allow cross-origin resource from http://localhost:5000 locally
+CORS_ORIGIN_ALLOW_ALL = True 
 
 CORS_ORIGIN_WHITELIST = (
-    'http://127.0.0.1:8080',   # Frontend on dev mode
+    'http://127.0.0.1:5000',   # Frontend on dev mode
     'http://127.0.0.1:8081',    # Frontend on dev mode
-    'http://localhost:8080', # Frontend on dev mode
+    'http://localhost:5000', # Frontend on dev mode
     'http://localhost:8081', # Frontend on dev mode
     'http://127.0.0.1:8000',   # Backend    
     'http://localhost:8000', 
