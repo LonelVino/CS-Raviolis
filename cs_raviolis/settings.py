@@ -55,9 +55,9 @@ MIDDLEWARE = [
     # it will try to authenticate user with the OAuth2 access token and 
     # set request.user and request._cached_user fields 
     # so that AuthenticationMiddleware (when active) will not try to get user from the session. 
-    'oauth2_provider.middleware.OAuth2TokenMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
+    'oauth2_provider.middleware.OAuth2TokenMiddleware',
     # 'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -67,19 +67,22 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'cs_raviolis.urls'
 
 #  we only want to allow cross-origin resource from http://localhost:8080 locally
-CORS_ORIGIN_ALLOW_ALL = True    
+CORS_ORIGIN_ALLOW_ALL = False 
 
-# CORS_ORIGIN_WHITELIST = (
-#     'http://127.0.0.1:8080',   # Frontend on dev mode
-#     'http://127.0.0.1:8081',    # Frontend on dev mode
-#     'http://localhost:8080', # Frontend on dev mode
-#     'http://localhost:8081', # Frontend on dev mode
-#     'http://127.0.0.1:8000',   # Backend    
-#     'http://localhost:8000', 
-#     'https://127.0.0.1:8000',   # Backend    
-#     'http://cs-raviolis.herokuapp.com',
-#     'https://cs-raviolis.herokuapp.com',
-# )
+CORS_ORIGIN_WHITELIST = (
+    'http://127.0.0.1:8080',   # Frontend on dev mode
+    'http://127.0.0.1:8081',    # Frontend on dev mode
+    'http://localhost:8080', # Frontend on dev mode
+    'http://localhost:8081', # Frontend on dev mode
+    'http://127.0.0.1:8000',   # Backend    
+    'http://localhost:8000', 
+    'https://127.0.0.1:8000',   # Backend    
+    'http://cs-raviolis.herokuapp.com',
+    'https://cs-raviolis.herokuapp.com',
+)
+
+
+WSGI_APPLICATION = 'cs_raviolis.wsgi.application'
 
 
 TEMPLATES = [
@@ -98,7 +101,6 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'cs_raviolis.wsgi.application'
 
 
 # Database
@@ -154,7 +156,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'dist'),
     os.path.join(BASE_DIR, 'dist/static'),
