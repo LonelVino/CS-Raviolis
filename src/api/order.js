@@ -45,9 +45,9 @@ export function checkUserOneItem(data) {
   })
 }
 
-export function checkUserAllItems(data) {
+export function checkOrderPaid(data) {
   return request({
-    url:  BASE_URL + '/check_usr_all_itms',
+    url:  BASE_URL + '/check_ord_paid',
     method: 'put',
     data
   })
@@ -70,17 +70,12 @@ export function deleteUserOrderItem(ord_itm_id) {
 
 export function deleteUserOrder(ord_id) {
   return request({
-    url: BASE_URL + '/delete_usr_one_ord?id='+ ord_id,
+    url: BASE_URL + '/delete_usr_ord?id='+ ord_id,
     method: 'delete',
   })
 }
 
-export function deleteUserAllOrders(usr_id) {
-  return request({
-    url: BASE_URL + '/delete_usr_all_ords?usr_id='+usr_id,
-    method: 'delete',
-  })
-}
+
 
 
 // -========================== Admin Part ===========================

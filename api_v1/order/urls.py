@@ -11,12 +11,11 @@ urlpatterns = [
     url('usr_ord_itms', views.user_one_order_items, name='userOneOrderItems'),   # order?id
     
     url('check_usr_one_itm', views.check_user_one_item, name='checkUserOneItem'),
-    url('check_usr_all_itms', views.check_user_all_items, name='checkUserAllItems'),
+    url('check_ord_paid', views.check_user_ord_paid, name='checkOrderPaid'),
     
     url('add_ord_itm', views.add_order_item, name='addOrderItem'),
     url('delete_usr_one_itm', views.del_user_one_item, name='deleteUserOneOrderItem'),
-    url('delete_usr_one_ord', views.delete_user_one_order, name='deleteUserOneOrder'),
-    url('delete_usr_all_ords', views.delete_user_all_orders, name='deleteUserAllOrderItems'),
+    url('delete_usr_ord', views.delete_user_one_order, name='deleteUserOneOrder'),
 
     # ---------------------- Admin Part -------------------------
     url('all_usrs_ords', views.all_users_orders, name='allUsersOrders'),      

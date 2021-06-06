@@ -29,6 +29,7 @@ urlpatterns = [
     path('api_v1/shop/', include('api_v1.shop.urls')),
     path('api_v1/cart/', include('api_v1.cart.urls')),
     path('api_v1/order/', include('api_v1.order.urls')),
+    path('api_v1/check_order/', include('api_v1.checkOrder.urls')),
 
     path('testdb/', include('TestModel.urls'), name='testdb'),
 

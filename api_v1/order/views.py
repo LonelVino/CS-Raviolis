@@ -117,16 +117,17 @@ def check_user_one_item(request):
             'msg': 'Update Failed, incorrect request method!'
         })
 
-def check_user_all_items(request):
+def check_user_ord_paid(request):
     if request.method == 'PUT':
         received_json_data = json.loads(request.body)
         rec = received_json_data
-        user_order_1 = UserOrder.objects.filter(user_id = rec['user_id'])
-        user_order_1.gotten = rec['gotten']
+        user_order_1 = UserOrder.objects.get(id = rec['ord_id'])
+        user_order_1.paid = rec['paid']
         user_order_1.save()
         return JsonResponse({
             'code': 200,
             'msg': 'Update Successfully!',
+            'info': user_order_1.paid
         })
     else: 
         return JsonResponse({
@@ -137,14 +138,48 @@ def check_user_all_items(request):
 def add_order_item(request):
     pass
 
+
 def del_user_one_item(request):
-    pass
+    try:
+        id = request.GET.get('id')
+    except:
+        pass
+    if id:
+        OrderItem.objects.filter(id=id).delete()
+        return JsonResponse({
+            'code': 200,
+            'msg': 'Delete successfully!',
+        })
+    else:
+        return JsonResponse({
+            'code': 404,
+            'msg': 'Delete failed!'
+        })
+   
 
 def delete_user_one_order(request):
-    pass
+    # remove all the items
+    try:
+        id = request.GET.get('id')
+    except:
+        pass
+    if id:
+        cart_items = list(OrderItem.objects.filter(order_id = id).values())
+        for item in cart_items:
+            OrderItem.objects.filter(id=item['id']).delete()
+        UserOrder.objects.filter(id=id).delete()
+        return JsonResponse({
+            'code': 200,
+            'msg': 'Delete successfully!',
+            'cart_items': cart_items
+        })
+    else:
+        return JsonResponse({
+            'code': 404,
+            'msg': 'Delete failed!'
+        })
 
-def delete_user_all_orders(request):
-    pass
+
 
 
 
