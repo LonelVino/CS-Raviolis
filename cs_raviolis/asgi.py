@@ -8,9 +8,14 @@ https://docs.djangoproject.com/en/3.2/howto/deployment/asgi/
 """
 
 import os
+import sys
+from pathlib import Path
 
 from django.core.asgi import get_asgi_application
 
+BASE_DIR = Path(__file__).resolve().parent.parent
+sys.path.append(BASE_DIR)
+os.environ['DJANGO_SETTINGS_MODULE'] = 'YOURAPP.settings'
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'cs_raviolis.settings')
 
 application = get_asgi_application()

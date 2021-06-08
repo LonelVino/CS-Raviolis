@@ -29,7 +29,7 @@ DEBUG = True
 ALLOWED_HOSTS=['*']
 CORS_ORIGIN_ALLOW_ALL = True
 
-
+os.environ['DJANGO_SETTINGS_MODULE'] = 'cs_raviolis.settings'
 # Application definition
 
 INSTALLED_APPS = [
