@@ -107,7 +107,7 @@ export default {
       listLoading: false,
       tableKey: 0,
 
-      usr_id: 13,    //TODO: tobe modified
+      // usr_id: 13,    //TODO: tobe modified
       order_items: null,
       orders: null,
       all_order_items: [],
@@ -126,7 +126,8 @@ export default {
     // console.log(this.noOrder)
   },
   computed: {
-    noOrder() {return (this.orders==null)}
+    noOrder() {return (this.orders==null)},
+    usr_id() {return this.$store.getters.user_id}
   },
   methods: {
     async getList() {

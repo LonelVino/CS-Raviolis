@@ -4,6 +4,7 @@ import router, { resetRouter } from '@/router'
 const state = {
   cas_id: 0,
   name: '',
+  user_id: 1,
   role: 'admin',
 }
 
@@ -14,12 +15,19 @@ const mutations = {
   SET_NAME: (state, name) => {
     state.name = name
   },
+  SET_USER_ID: (state, user_id) => {
+    state.user_id = user_id
+  },
   SET_ROLE: (state, role) => {
     state.role = role
   },
 }
 
 const actions = {
+  setUserId({ commit }, user_id) {
+    commit('SET_USER_ID', user_id)
+  },
+
   register({ commit }, userInfo) {
     const { username, password } = userInfo
     return new Promise((resolve, reject) => {

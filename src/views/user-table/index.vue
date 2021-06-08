@@ -44,7 +44,13 @@
           </div>
         </template>
       </el-table-column>
-
+      <el-table-column label="CheckOrder" align="center" width="150" class-name="small-padding fixed-width">
+        <template slot-scope="{row}">
+          <el-button type="primary" size="mini" @click="handleCheckOrder(row)">
+            CheckOrder
+          </el-button>
+        </template>
+      </el-table-column>
       <el-table-column label="Actions" align="center" width="350" class-name="small-padding fixed-width">
         <template slot-scope="{row}">
           <el-button type="primary" size="mini" @click="handleSubmit(row)">
@@ -227,6 +233,12 @@ export default {
         id: undefined,
         name: '',
       }
+    },
+
+    handleCheckOrder(row) {
+      console.log(row.id)
+      this.$store.dispatch('user/setUserId', row.id)
+      this.$router.push('/user-order-table')
     },
 
     handleCreate() {
