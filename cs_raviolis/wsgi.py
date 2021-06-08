@@ -15,7 +15,7 @@ from django.core.wsgi import get_wsgi_application
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 sys.path.append(BASE_DIR)
-os.environ['DJANGO_SETTINGS_MODULE'] = 'YOURAPP.settings'
+os.environ['DJANGO_SETTINGS_MODULE'] = 'cs_raviolis.settings'
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'cs_raviolis.settings')
 
 application = get_wsgi_application()
