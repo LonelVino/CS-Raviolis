@@ -8,4 +8,4 @@ pytz
 whitenoise==5.2.0
 # djangorestframework==3.12.2
 dj-database-url==0.5.0
-oauth2_provider
+# oauth2_provider
